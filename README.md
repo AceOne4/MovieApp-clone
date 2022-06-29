@@ -1,4 +1,28 @@
-# Getting Started with Create React App
+# NETFLIX CLONE
+
+Its An movie app That show Bunch Of Movies and series that u can move betwwen teh both categories
+
+you can sing up
+
+you can sign in
+
+You can Choosen betwwen two Categories "series" & "films"
+
+browse The Movies and series
+
+## Tech
+
+auth by firbase
+
+firbase cloud
+
+react Router
+
+react Hooks
+
+react styled component
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
