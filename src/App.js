@@ -9,7 +9,7 @@ import { ISUSerRedirect, ProtectedRoute } from "./helpers/Route";
 
 function App() {
   const { user } = useAuthListenner();
-  console.log(user);
+
   return (
     <Router>
       <Switch>

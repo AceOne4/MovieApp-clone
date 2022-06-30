@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import SelectProfileConatiner from "./ProfileContainer";
+import Fuse from "fuse.js";
 import { firebaseCtx } from "../context/firebase";
 import Loading from "../Component/Loading";
 import Header from "../Component/Header";
@@ -7,6 +8,7 @@ import * as ROUTES from "../Constant/Routes";
 import logo from "../logo.svg";
 import Card from "../Component/Card";
 import FooterContainer from "./footerContainer";
+import Player from "../Component/Player";
 
 const BrowseContainer = function ({ slides }) {
   const [profile, setProfile] = useState({});
@@ -37,6 +39,19 @@ const BrowseContainer = function ({ slides }) {
   useEffect(() => {
     setSlideRow(slides[Category]);
   }, [slides, Category]);
+
+  useEffect(() => {
+    const fuse = new Fuse(SlideRow, {
+      keys: ["data.description", "data.title", "data.genre"],
+    });
+    const results = fuse.search(Searchterm).map(({ item }) => item);
+
+    if (SlideRow.length > 0 && Searchterm.length > 3 && results.length > 0) {
+      setSlideRow(results);
+    } else {
+      setSlideRow(slides[Category]);
+    }
+  }, [Searchterm, Category, SlideRow, slides]);
 
   return profile.displayName ? (
     <>
@@ -111,7 +126,10 @@ const BrowseContainer = function ({ slides }) {
                 ))}
               </Card.Entities>
               <Card.Feature Category={Category}>
-                <p>HEllo!</p>
+                <Player>
+                  <Player.Button />
+                  <Player.Video src="/videos/bunny.mp4" />
+                </Player>
               </Card.Feature>
             </Card>
           );

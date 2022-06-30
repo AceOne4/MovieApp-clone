@@ -3,7 +3,6 @@ import Profile from "../Component/Profile";
 import * as ROUTES from "../Constant/Routes";
 import logo from "../logo.svg";
 const SelectProfileConatiner = function ({ user, setProfile }) {
-  console.log("user", user);
   return (
     <>
       <Header bg={false}>
